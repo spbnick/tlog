@@ -64,8 +64,8 @@ test(const char *name, size_t exp_res_len,
          "res_len: %zu != %zu", res_res_len, exp_res_len);
     if (memcmp(res_out_buf, exp_out_buf, sizeof(res_out_buf)) != 0) {
         FAIL("out_buf mismatch:");
-        tlog_test_diff(stderr, (uint8_t *)res_out_buf, sizeof(res_out_buf),
-                               (uint8_t *)exp_out_buf, sizeof(res_out_buf));
+        tltest_diff(stderr, (uint8_t *)res_out_buf, sizeof(res_out_buf),
+                            (uint8_t *)exp_out_buf, sizeof(res_out_buf));
     }
 #undef TEST
 #undef FAIL

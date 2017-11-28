@@ -74,11 +74,11 @@ test(const char *name,
         memcmp(res_result_text, exp_result_text, res_result_len) != 0) {
         passed = false;
         fprintf(stderr, "%s: result mismatch:\n", name);
-        tlog_test_diff(stderr,
-                       (const uint8_t *)res_result_text,
-                       res_result_len,
-                       (const uint8_t *)exp_result_text,
-                       exp_result_len);
+        tltest_diff(stderr,
+                    (const uint8_t *)res_result_text,
+                    res_result_len,
+                    (const uint8_t *)exp_result_text,
+                    exp_result_len);
     }
 
     fprintf(stderr, "%s: %s\n", name, (passed ? "PASS" : "FAIL"));
