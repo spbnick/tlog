@@ -2,7 +2,7 @@
  * @file
  * @brief Timestamp string
  *
- * Timestamp string has format HH:MM:SS.sss, where any part except SS can
+ * Timestamp string has format HH:MM:SS.sss, where any part except SS can be
  * omitted.
  */
 /*
