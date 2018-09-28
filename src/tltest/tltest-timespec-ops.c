@@ -1,5 +1,5 @@
 /*
- * Tlog timespec module test.
+ * Tlog timespec operations test.
  *
  * Copyright (C) 2017 Red Hat
  *

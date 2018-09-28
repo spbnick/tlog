@@ -35,7 +35,7 @@ TESTS = \
     tltest-json-stream-btoa     \
     tltest-json-stream-enc-bin  \
     tltest-json-stream-enc-txt  \
-    tltest-timespec             \
+    tltest-timespec-ops         \
     tltest-timestr
 
 check_PROGRAMS = \
@@ -50,7 +50,7 @@ check_PROGRAMS = \
     tltest-json-stream-btoa     \
     tltest-json-stream-enc-bin  \
     tltest-json-stream-enc-txt  \
-    tltest-timespec             \
+    tltest-timespec-ops         \
     tltest-timestr
 
 tltest_json_stream_btoa_SOURCES = tltest-json-stream-btoa.c
@@ -114,8 +114,8 @@ tltest_json_esc_LDADD = \
     ../../lib/tltest/libtltest.la   \
     ../../lib/tlog/libtlog.la
 
-tltest_timespec_SOURCES = tltest-timespec.c
-tltest_timespec_LDADD = \
+tltest_timespec_ops_SOURCES = tltest-timespec-ops.c
+tltest_timespec_ops_LDADD = \
     ../../lib/tlog/libtlog.la   \
     -lm
 
