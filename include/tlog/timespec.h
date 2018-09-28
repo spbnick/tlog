@@ -26,6 +26,7 @@
 #define _TLOG_TIMESPEC_H
 
 #include <tlog/misc.h>
+#include <tlog/grc.h>
 #include <time.h>
 #include <math.h>
 #include <limits.h>
@@ -333,5 +334,50 @@ tlog_timespec_arg_nsec(const struct timespec *ts)
     tlog_timespec_arg_sign(_ts),    \
     tlog_timespec_arg_sec(_ts),     \
     tlog_timespec_arg_nsec(_ts)
+
+/**
+ * Convert an RFC 3339 datetime string to a timespec.
+ *
+ * NOTE: Temporarily sets (and then restores) the "TZ" environment variable,
+ *       and as such is not reentrant.
+ *
+ * @param str   The RFC 3339 datetime string to convert. Cannot be NULL.
+ *              Can only represent the time from the beginning of Epoch.
+ * @param res   Location for result, can be NULL to have conversion result
+ *              ignored.
+ *
+ * @return Global return code. One of:
+ *         TLOG_RC_OK - conversion succeeded and "res" was updated;
+ *         TLOG_RC_TIMESPEC_RFC3339_INVALID - the RFC 3339 string supplied in
+ *         str had invalid format, which couldn't be parsed, and "res" was not
+ *         updated;
+ *         other - another failure occured during conversion, and "res" was
+ *         not updated.
+ */
+extern tlog_grc tlog_timespec_from_rfc3339(const char *str,
+                                           struct timespec *res);
+
+/**
+ * Convert a timespec to an RFC 3339 datetime string.
+ *
+ * NOTE: Uses the value of the "TZ" environment variable to determine the
+ *       timezone to represent the converted time in. However, it doesn't have
+ *       to call tzset(3), so the caller may need to do that when changing the
+ *       "TZ" variable value.
+ *
+ * @param buf   Pointer to the buffer to output the converted string to.
+ *              Can be NULL, if len is zero.
+ * @param len   Length of the buffer to output the converted string to.
+ * @param ts    The timespec to convert. Can only be zero or positive.
+ *
+ * @return Global return code. One of:
+ *         TLOG_RC_OK - conversion succeeded and the output buffer was
+ *         updated to contain the result;
+ *         TLOG_RC_TIMESPEC_RFC3339_NOSPACE - insufficient space in the output
+ *         buffer, and the output buffer state is undefined;
+ *         other - another failure, and the output buffer state is undefined.
+ */
+extern tlog_grc tlog_timespec_to_rfc3339(char *buf, size_t len,
+                                         const struct timespec *ts);
 
 #endif /* _TLOG_TIMESPEC_H */

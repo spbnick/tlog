@@ -61,6 +61,10 @@ static const char *tlog_rc_desc_list[TLOG_RC_MAX_PLUS_ONE - TLOG_RC_MIN] = {
         "Invalid reply received from HTTP server",
     [TLOG_RC_MEM_JSON_READER_INCOMPLETE_LINE] =
         "Incomplete message object line encountered",
+    [TLOG_RC_TIMESPEC_RFC3339_INVALID] =
+        "Invalid RFC 3339 date/time string",
+    [TLOG_RC_TIMESPEC_RFC3339_NOSPACE] =
+        "Not enough space for an RFC 3339 date/time string",
 };
 
 const char *
